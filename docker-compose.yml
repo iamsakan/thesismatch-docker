@@ -20,6 +20,16 @@ services:
       timeout: 5s
       retries: 10
 
+  redis:
+    image: redis:7-alpine
+    container_name: thesis-redis
+    restart: unless-stopped
+    # geslo, največ 64 MB RAM-a, ob polnem pomnilniku briši stare ključe s TTL
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}", "--maxmemory", "64mb", "--maxmemory-policy", "volatile-lru"]
+    networks:
+      - backend
+    # brez "ports:" -> Redis ni dostopen od zunaj
+
   app:
     build: .
     container_name: thesis-app
@@ -29,11 +39,14 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASSWORD}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
     ports:
-      - "127.0.0.1:8080:80"
+      - "127.0.0.1:8080:80"  # samo localhost, ne iz omrežja
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_started
     networks:
       - backend
 

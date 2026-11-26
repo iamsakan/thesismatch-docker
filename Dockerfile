@@ -1,11 +1,12 @@
 FROM php:8.2-apache
 
-# PHP razširitev za povezavo z MySQL/MariaDB (PDO)
-RUN docker-php-ext-install pdo_mysql
+# PHP razširitvi: pdo_mysql za MariaDB, redis za shranjevanje sej v Redis
+RUN docker-php-ext-install pdo_mysql \
+ && pecl install redis \
+ && docker-php-ext-enable redis
 
-# XAMPP ima output_buffering vklopljen, uradna PHP slika pa ne.
-# Brez tega header('Location: ...') ne deluje, ker header.php že izpiše HTML.
-RUN echo "output_buffering = 4096" > /usr/local/etc/php/conf.d/app.ini
+# Naše PHP nastavitve (varnost + seje v Redisu)
+COPY php/thesis.ini /usr/local/etc/php/conf.d/thesis.ini
 
 # Aplikacija uporablja poti /thesismatch/..., zato jo damo v to podmapo
 COPY code/thesismatch/ /var/www/html/thesismatch/
