@@ -6,8 +6,14 @@ Ime izhaja iz besede angleške besede za diplomsko delo "Thesis".
 
 Aplikacijo sem že napolnil z določenimi podatki, kakor bi vam olajšal testiranje.
 
-## Namestitev
-Aplikacija je klasična, kot smo delali na vajah. Potrebno je samo mapo `thesismatch` spraviti v `htdocs` ter uvoziti `db.sql` v phpMyAdmin. Bazo ni potrebno ročno ustvarjati, saj sem izbral custom način in vključil create stavek za databazo.
+## Namestitev (Docker)
+1. `copy .env.example .env` in vpiši gesla
+2. `docker compose up -d --build`
+3. Odpri http://localhost:8080
+
+Aplikacija (`app`) in baza (`db`) tečeta v ločenih vsebnikih v omrežju `backend`.
+Aplikacija se z bazo poveže prek internega docker DNS (`DB_HOST=db`).
+Baza nima odprtih portov navzven.
 
 ## Testni uporabniki
 
