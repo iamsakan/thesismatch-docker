@@ -30,7 +30,7 @@ services:
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASSWORD}
     ports:
-      - "8080:80"
+      - "127.0.0.1:8080:80"
     depends_on:
       db:
         condition: service_healthy
