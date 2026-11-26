@@ -1,0 +1,44 @@
+services:
+  db:
+    image: mariadb:10.11
+    container_name: thesis-db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql                            # podatki ostanejo po restartu
+      - ./db.sql:/docker-entrypoint-initdb.d/01-db.sql:ro # uvoz samo ob prvem zagonu
+    networks:
+      - backend
+    # brez "ports:" -> baza ni dostopna od zunaj, samo znotraj omrežja
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    container_name: thesis-app
+    restart: unless-stopped
+    environment:
+      DB_HOST: db            # ime servisa = interni docker DNS
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  db_data:

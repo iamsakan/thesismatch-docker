@@ -1,0 +1,160 @@
+* {
+    font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    transition: box-shadow 0.2s;
+}
+
+.card:hover {
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.badge {
+    font-weight: 500;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+}
+
+.display-4, .display-5 {
+    font-weight: 700;
+}
+
+.navbar {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+a {
+    color: #0d6efd;
+}
+
+.table th {
+    font-weight: 600;
+    color: #495057;
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+}
+
+
+
+.role-card {
+    cursor: pointer;
+    transition: all 0.2s;
+    display: block;
+}
+
+.role-card:hover {
+    border-color: #767c88 !important;
+    background-color: rgba(72, 73, 75, 0.1);
+}
+
+.role-radio:checked + .role-card {
+    border-color: #000712 !important;
+    background-color: rgba(31, 32, 35, 0.1);
+}
+
+::placeholder {
+    color: #adb5bd !important;
+    font-weight: 500;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+.register-underline:hover {
+    text-decoration: underline !important;
+}
+
+
+
+
+.btn-primary {
+    background-color: #111827 !important;
+    border-color: #111827 !important;
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: #374151 !important;
+    border-color: #374151 !important;
+}
+
+.badge.bg-success {
+    background-color: #111827 !important;
+}
+
+.nav-link:hover {
+    color: #d1d5db !important;
+}
+
+.btn-outline-primary {
+    color: #111827 !important;
+    border-color: #111827 !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #111827 !important;
+    color: white !important;
+}
+
+.display-4, .display-5 {
+    color: #111827 !important;
+}
+
+.text-primary {
+    color: #111827 !important;
+}
+
+.badge.bg-success {
+    background-color: #03692a !important;
+}
+
+a {
+    color: #475569 !important;
+}
+
+
+/* navbar*/
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,0.85) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white !important;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+a .card {
+    transition: box-shadow 0.2s, transform 0.15s;
+}
+
+a .card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
